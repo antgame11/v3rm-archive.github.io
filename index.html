@@ -185,7 +185,8 @@
             if (page > 1) {
                 page = page * 10;
             }
-            const url = `https://v3rmsearch-cors-proxy.vercel.app/api/index?url=https://bing.com/search?q=${encodeURIComponent(query)}%26first=${page}%26form=${sessionStorage.getItem("form")}`;
+            const bingurl = `https://www.bing.com/search?q=site%3av3rmillion.net+${encodeURIComponent(query)}&first=${page}&FORM=${sessionStorage.getItem("form")}`
+            const url = `https://corsproxy.io/?${bingurl}`
             const response = await axios.get(url, {
                 headers: {
                 },
@@ -229,7 +230,7 @@
         async function search(page = 1) {
             currentPage = page;
             const query = document.getElementById("searchInput").value;
-            let results = await bingSearch("site:v3rmillion.net " + query, page)
+            let results = await bingSearch(query , page)
             console.log(results[1]);
             displayResults(results[0]);
             updatePagination(results[2], results[1]);
